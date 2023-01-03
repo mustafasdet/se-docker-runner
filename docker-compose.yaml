@@ -3,7 +3,7 @@ services:
   hub:
     image: selenium/hub:4.4.0
     ports:
-      - "4444:4444"
+#      - "4444:4444"  we just use it while running in our local machine
   chrome:
     image: selenium/node-chrome:4.4.0
     shm_size: '2g'
@@ -32,7 +32,7 @@ services:
       - HUB_HOST=hub
       - MODULE=search-module.xml
     volumes:
-      - ./search-result/:/usr/share/udemy/test-output
+      - ./output/search-result/:/usr/share/udemy/test-output
   book-flight-module:
     image: selenium-docker
     depends_on:
@@ -43,4 +43,4 @@ services:
       - HUB_HOST=hub
       - MODULE=book-flight-module.xml
     volumes:
-      - ./book-result/:/usr/share/udemy/test-output
+      - ./output/book-result/:/usr/share/udemy/test-output
