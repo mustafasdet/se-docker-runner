@@ -32,19 +32,33 @@ pipeline{
                 sh "docker-compose up search-module book-flight-module"
             }
         }
+        stage("Compose down") {
+                    steps{
+                        sh "docker-compose down"
+                    }
+                }
+
+
+
     }
-	post{
-		always{
-// always >> will see the results in the specified directory
-// we moved docker-compose down to here alse
-		//Since a stage can be skipped. But post { always .. executed}
-			archiveArtifacts artifacts: 'output/**'
-			sh "docker-compose down"
-			sh "sudo rm -rf output/"
-			// The above cmd is to reach output files easily.
-		}
-    }
-}
+ }
+
+
+
+
+
+
+// 	post{
+// 		always{
+// // always >> will see the results in the specified directory
+// // we moved docker-compose down to here alse
+// 		//Since a stage can be skipped. But post { always .. executed}
+// 			archiveArtifacts artifacts: 'output/**'
+// 			sh "docker-compose down"
+// 			sh "sudo rm -rf output/"
+// 		}
+//     }
+// }
 
 
 // The following is the end code pulled from git
